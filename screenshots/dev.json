@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Orbit",
+      "hasCanvas": false,
+      "bodyTextLen": 1259,
+      "bodyTextHash": "762ad2e573b1ee31d925de0d5f9d1d38886e72d68c22bd6a408ce3473a2bf57b",
+      "bodyTextPrefix": "Orbit Profile browser Profile 6 Proxy Extension Ví Hàng đợi 6 pr",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/dev.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Orbit",
+      "hasCanvas": false,
+      "bodyTextLen": 473,
+      "bodyTextHash": "42630705d5b16beb2c10696863ef4988b08d526ddd58167ecc7217b015a2f8b8",
+      "bodyTextPrefix": "Orbit Profile browser 0 đang mở Profile 6 Proxy Extension Ví Hàn",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/dev-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/dev.json"
+}

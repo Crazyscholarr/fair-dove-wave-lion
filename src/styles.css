@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0b0c0e;
+  --color-surface: #13151a;
+  --color-elevated: #1c1f26;
+  --color-fg: #e8e6e1;
+  --color-muted: #8f918c;
+  --color-sage: #9aaf9e;
+  --color-line: #2a2d34;
+  --color-danger: #d4726a;
+  --color-warn: #d4b483;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  select {
+    color-scheme: dark;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-sage);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: #9aaf9e55;
+    color: var(--color-fg);
+  }
+}
+
+@keyframes orbit-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.dot-live {
+  animation: orbit-pulse 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot-live {
+    animation: none;
+  }
+}
