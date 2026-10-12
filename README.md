@@ -35,8 +35,27 @@ Mở [http://localhost:8080](http://localhost:8080).
 3. Vào **Extension**, thêm ví hoặc gói cần nạp, rồi gắn vào từng profile ở cột bên phải.
 4. Ở **Profile**, tick những profile cần chạy và bấm **Chạy**. Hoặc mở một profile và bấm **Đăng nhập ví**.
 5. Sang **Hàng đợi** để xem nhật ký. **Dừng** để cắt giữa chừng. Thanh **Song song** chỉnh số profile chạy cùng lúc.
+6. Vào **Plugin** để nối AI hoặc script tự vận hành.
 
 Profile mẫu `US-05` đang gắn một proxy chết, dùng để thử nhánh lỗi của hàng đợi.
+
+## Plugin — AI tự vận hành
+
+Tab **Plugin** có hai cách gọi lệnh. Cả hai đều không nhận cụm từ hạt giống hay private key. Lệnh nào chứa những thứ đó bị chặn.
+
+**AI.** Dán địa chỉ API kiểu OpenAI, tên model và khoá. Mặc định là `https://api.x.ai/v1` và `grok-4`. Ollama trên máy bạn dùng `http://127.0.0.1:11434/v1`. Bấm **Kiểm tra kết nối**, viết việc cần làm bằng tiếng Việt, rồi **Để AI chạy**. AI chỉ thấy tên profile, proxy, extension và địa chỉ ví — không thấy bí mật. Khoá API nằm trong phiên trình duyệt và chỉ được chuyển tiếp tới đúng địa chỉ bạn nhập.
+
+**Script cùng trang.** Khi Orbit đang mở:
+
+```js
+window.orbitPlugin.snapshot()
+window.orbitPlugin.run([
+  { op: "create_profiles", count: 2, base: "Farm", os: "windows", proxy: "round" },
+  { op: "enqueue", profiles: "idle" }
+])
+```
+
+Lệnh được phép: tạo profile, chọn, gắn proxy, nạp extension, ghi chú, gán ví đã có sẵn, đưa vào hàng, chỉnh số chạy song song, dừng, xoá lịch sử hàng. Plugin không xoá profile và không nhập ví mới.
 
 ## Dữ liệu ở đâu
 

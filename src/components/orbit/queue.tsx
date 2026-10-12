@@ -15,8 +15,8 @@ const JOB_LABEL: Record<JobStatus, string> = {
 export function Queue() {
   const jobs = useOrbit((s) => s.jobs);
   const selectedIds = useOrbit((s) => s.selectedIds);
+  const concurrency = useOrbit((s) => s.concurrency);
   const [focus, setFocus] = useState<string | null>(null);
-  const [concurrency, setConcurrency] = useState(2);
   const active = jobs.some((job) => job.status === "queued" || job.status === "running");
   const current = jobs.find((job) => job.id === focus) ?? jobs[0] ?? null;
   const done = jobs.filter((job) => job.status === "done").length;
@@ -41,11 +41,7 @@ export function Queue() {
               max={5}
               value={concurrency}
               className="w-24 accent-sage"
-              onChange={(event) => {
-                const value = Number(event.target.value);
-                setConcurrency(value);
-                setQueueConcurrency(value);
-              }}
+              onChange={(event) => setQueueConcurrency(Number(event.target.value))}
               aria-label="Số profile chạy cùng lúc"
             />
             <span className="tabular-nums text-fg">{concurrency}</span>

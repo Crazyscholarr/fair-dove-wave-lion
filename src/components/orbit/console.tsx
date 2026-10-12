@@ -1,21 +1,24 @@
 import {
   AppWindow,
+  Bot,
   KeyRound,
   ListOrdered,
   Puzzle,
   Waypoints,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Extensions } from "@/components/orbit/extensions";
+import { Plugin } from "@/components/orbit/plugin";
 import { Profiles } from "@/components/orbit/profiles";
 import { Proxies } from "@/components/orbit/proxies";
 import { Queue } from "@/components/orbit/queue";
 import { Mark } from "@/components/orbit/ui";
 import { Wallets } from "@/components/orbit/wallets";
 import { cn } from "@/lib/cn";
+import { installOrbitPlugin } from "@/lib/orbit/plugin";
 import { useOrbit } from "@/lib/orbit/store";
 
-type View = "profiles" | "proxies" | "extensions" | "wallets" | "queue";
+type View = "profiles" | "proxies" | "extensions" | "wallets" | "queue" | "plugin";
 
 const NAV: { id: View; label: string; icon: typeof AppWindow }[] = [
   { id: "profiles", label: "Profile", icon: AppWindow },
@@ -23,6 +26,7 @@ const NAV: { id: View; label: string; icon: typeof AppWindow }[] = [
   { id: "extensions", label: "Extension", icon: Puzzle },
   { id: "wallets", label: "Ví", icon: KeyRound },
   { id: "queue", label: "Hàng đợi", icon: ListOrdered },
+  { id: "plugin", label: "Plugin", icon: Bot },
 ];
 
 export function Console() {
@@ -37,6 +41,10 @@ export function Console() {
     profiles,
     queue: activeJobs,
   };
+
+  useEffect(() => {
+    installOrbitPlugin();
+  }, []);
 
   return (
     <div className="flex min-h-dvh flex-col bg-bg text-fg md:h-dvh md:flex-row md:overflow-hidden">
@@ -90,6 +98,7 @@ export function Console() {
         {view === "extensions" && <Extensions />}
         {view === "wallets" && <Wallets onRan={() => setView("queue")} />}
         {view === "queue" && <Queue />}
+        {view === "plugin" && <Plugin />}
       </div>
       {notice ? (
         <button

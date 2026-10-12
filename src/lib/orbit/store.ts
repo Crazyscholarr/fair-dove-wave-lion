@@ -21,6 +21,7 @@ export type OrbitData = {
   extensions: Extension[];
   wallets: Wallet[];
   jobs: Job[];
+  concurrency: number;
   selectedIds: string[];
   vaultOn: boolean;
   locked: boolean;
@@ -45,6 +46,7 @@ function initial(): OrbitData {
     extensions: seedExtensions,
     wallets: [],
     jobs: [],
+    concurrency: 2,
     selectedIds: [],
     vaultOn: false,
     locked: false,

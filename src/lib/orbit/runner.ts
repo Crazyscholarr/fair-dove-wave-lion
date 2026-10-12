@@ -8,6 +8,9 @@ let concurrency = 2;
 
 export function setQueueConcurrency(value: number) {
   concurrency = Math.max(1, Math.min(5, Math.round(value) || 1));
+  if (useOrbit.getState().concurrency !== concurrency) {
+    useOrbit.setState({ concurrency });
+  }
 }
 
 function short(value: string) {
